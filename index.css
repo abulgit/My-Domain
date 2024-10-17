@@ -1,0 +1,73 @@
+:root {
+    --bg-color: #fff;
+    --text-color: #000;
+    --transition-duration: 1s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+    overflow: hidden;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.toggle-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    background-color: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.2);
+    transition: background-color var(--transition-duration);
+}
+
+.circle {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    transition: width var(--transition-duration), height var(--transition-duration), top var(--transition-duration), left var(--transition-duration);
+    z-index: -1;
+}
+
+.dark-mode {
+    --bg-color: #000;
+    --text-color: #fff;
+}
+
+h1, h2 {
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .toggle-button {
+        width: 2.5rem;
+        height: 2.5rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1rem; }
+}
