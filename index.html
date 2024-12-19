@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abul Hossain Khan</title>
-    <!-- Add Roboto font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -17,13 +16,13 @@
             justify-content: center;
             align-items: center;
             font-family: 'Roboto', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #000000;
             position: relative;
             overflow: hidden;
         }
 
-        body.dark-mode {
-            background-color: #000000;
+        body.light-mode {
+            background-color: #f5f5f5;
         }
 
         h1 {
@@ -31,7 +30,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: 1px;
-            color: #000000;
+            color: #fff;
             z-index: 2;
             position: relative;
         }
@@ -41,17 +40,17 @@
             font-size: 1.2rem;
             font-weight: 300;
             letter-spacing: 0.5px;
-            color: #1a1a1a;
+            color: #aaa;
             z-index: 2;
             position: relative;
         }
 
-        .dark-mode h1 {
-            color: #fff;
+        body.light-mode h1 {
+            color: #000000;
         }
 
-        .dark-mode p {
-            color: #aaa;
+        body.light-mode p {
+            color: #1a1a1a;
         }
 
         #theme-toggle {
@@ -63,8 +62,8 @@
             border-radius: 50%;
             border: none;
             cursor: pointer;
-            background-color: #000000;
-            color: #fff;
+            background-color: #fff;
+            color: #333;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 3;
             display: flex;
@@ -77,12 +76,12 @@
             font-size: 1.5rem;
         }
 
-        body.dark-mode #theme-toggle {
-            background-color: #fff;
-            color: #333;
+        body.light-mode #theme-toggle {
+            background-color: #000000;
+            color: #fff;
         }
 
-        body.dark-mode #theme-toggle::before {
+        body.light-mode #theme-toggle::before {
             content: "";
         }
 
@@ -171,7 +170,7 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
 
-        body.dark-mode .ripple {
+        body.light-mode .ripple {
             background-color: rgba(0, 0, 0, 0.2);
         }
 
@@ -214,10 +213,10 @@
             button.appendChild(ripple);
         }
 
-        function createThemeCircle(isDark) {
+        function createThemeCircle(isLight) {
             const circle = document.createElement('div');
             circle.classList.add('theme-circle');
-            circle.classList.add(isDark ? 'dark' : 'light');
+            circle.classList.add(isLight ? 'light' : 'dark');
             
             const rect = themeToggle.getBoundingClientRect();
             const maxDim = Math.max(
@@ -241,17 +240,17 @@
             
             createRipple(e);
 
-            const isDark = !body.classList.contains('dark-mode');
-            const circle = createThemeCircle(isDark);
+            const isLight = !body.classList.contains('light-mode');
+            const circle = createThemeCircle(isLight);
             
             contentWrapper.classList.remove('animate-to-dark', 'animate-to-light');
-            contentWrapper.classList.add(isDark ? 'animate-to-dark' : 'animate-to-light');
+            contentWrapper.classList.add(isLight ? 'animate-to-light' : 'animate-to-dark');
             
             requestAnimationFrame(() => {
                 circle.classList.add('animate');
                 
                 setTimeout(() => {
-                    body.classList.toggle('dark-mode');
+                    body.classList.toggle('light-mode');
                     setTimeout(() => {
                         circle.remove();
                         isAnimating = false;
